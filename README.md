@@ -12,7 +12,7 @@ Creating a Snake Game with HTML, CSS, and JavaScript
 Here is the HTML structure for the game board, 
 with the div for the game, the score, and the high score.
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@ with the div for the game, the score, and the high score.
 
 Now, let's add some style using CSS:
 
-```
+```CSS
 #game-board {
     position: relative;
     height: 400px;
@@ -65,7 +65,7 @@ Now, let's add some style using CSS:
 Next, we'll define our snake and its starting position, 
 creating a function to update the snake's position on the game board.
 
-```
+```JavaScript
 // script.js
 let snake = [{ top: 200, left: 200 }];
 ```
@@ -75,7 +75,7 @@ We'll set up the movement logic and control the snake using arrow keys.
 We'll also implement the logic to move the snake to the opposite side 
 if it crosses the boundary.
 
-```
+```JavaScript
 // script.js continued
 let direction = { key: 'ArrowRight', dx: 20, dy: 0 };
 
@@ -111,7 +111,7 @@ function moveSnake() {
 ### 4. Creating the Food
 Next, we'll generate food for the snake at random positions on the board.
 
-```
+```JavaScript
 // script.js continued
 let food = null;
 
@@ -134,7 +134,7 @@ function eatFood() {
 ### 5. Score System
 We'll implement a score system to keep track of the score and the high score.
 
-```
+```JavaScript
 // script.js continued
 let score = 0;
 let highScore = 0;
@@ -148,7 +148,7 @@ function updateScore() {
 ### 6. Game Over Condition
 We'll implement the game over condition when the snake collides with itself.
 
-```
+```JavaScript
 // script.js continued
 function gameOver() {
     for (let i = 1; i < snake.length; i++) {
@@ -162,7 +162,7 @@ function gameOver() {
 ### 7. Drawing the Snake and Food
 Finally, we'll draw the snake and food on the game board.
 
-```
+```JavaScript
 // script.js continued
 function drawSnake() {
     snake.forEach((part, index) => {
@@ -189,7 +189,7 @@ function drawFood() {
 ### 8. Bringing It All Together
 Finally, we'll bring all the pieces together and create the game loop.
 
-```
+```JavaScript
 // script.js continued
 function gameLoop() {
     if (gameOver()) {
