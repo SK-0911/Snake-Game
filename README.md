@@ -170,9 +170,7 @@ function drawSnake() {
         snakeElement.style.top = `${part.top}px`;
         snakeElement.style.left = `${part.left}px`;
         snakeElement.classList.add('snake');
-        if (index === 0) snakeElement.classList.add('head
-
-');
+        if (index === 0) snakeElement.classList.add('head');
         document.getElementById('game-board').appendChild(snakeElement);
     });
 }
