@@ -16,7 +16,7 @@ let speed =250;
 
 
 window.addEventListener('keydown', e => {
-    console.log(e.key);
+    // console.log(e.key);
     const newDirection = getDirection(e.key);
 
     // This is to prevent the snake from going in the opposite direction, which would cause it to eat itself.
@@ -24,6 +24,11 @@ window.addEventListener('keydown', e => {
     const allowedChange = Math.abs(direction.dx) !== Math.abs(newDirection.dx);
 
     if (allowedChange) direction = newDirection;
+
+    // To pause the game
+    if (e.key === ' ') {
+        alert("Game Paused!\nPress OK to continue.");
+    }
 });
 
 
@@ -52,17 +57,17 @@ function moveSnake() {
     // unshift() adds an element to the beginning of an array
     snake.unshift(head);
 
-    // Upper wall
-    if (snake[0].top < 0) snake[0].top = 480;
-
-    // Left wall
-    if (snake[0].left < 0) snake[0].left = 480;
-
-    // Lower wall
-    if (snake[0].top > 480) snake[0].top = 0;
-
-    // Right wall
-    if (snake[0].left > 480) snake[0].left = 0;
+    // // Upper wall
+    // if (snake[0].top < 0) snake[0].top = 480;
+    //
+    // // Left wall
+    // if (snake[0].left < 0) snake[0].left = 480;
+    //
+    // // Lower wall
+    // if (snake[0].top > 480) snake[0].top = 0;
+    //
+    // // Right wall
+    // if (snake[0].left > 480) snake[0].left = 0;
 
     // if the snake doesn't eat food, remove the tail
     if (!eatFood()) snake.pop();
@@ -86,10 +91,16 @@ function eatFood() {
 
 
 function gameOver() {
+    // if the snake hits the wall, game over
+    if(snake[0].top < 0 || snake[0].left < 0 || snake[0].top > 480 || snake[0].left > 480){
+        return true;
+    }
+
     for (let i = 1; i < snake.length; i++) {
         if (snake[i].top === snake[0].top && snake[i].left === snake[0].left)
             return true;
     }
+
     return false;
 }
 
@@ -101,8 +112,7 @@ function updateScore() {
 
 
 function gameLoop() {
-    console.log("Game Loop");
-
+    // console.log("Game Loop");
     if (gameOver()) {
         alert("Game Over!");
         if (score > highScore) {
@@ -119,12 +129,12 @@ function gameLoop() {
     }
 
     setTimeout(() => {
-        // console.log("Game Loop");
         document.getElementById("game-board").innerHTML = "";
         moveSnake();
         if (!food){
             randomFood();
             speed -= 5;
+            console.log(speed);
             score += 10;
         }
         if (eatFood()){
@@ -139,7 +149,7 @@ function gameLoop() {
 
 
 function drawSnake() {
-    console.log("Draw Snake");
+    // console.log("Draw Snake");
     snake.forEach((part, index) => {
         const snakeElement = document.createElement('div');
         snakeElement.style.top = `${part.top}px`;
